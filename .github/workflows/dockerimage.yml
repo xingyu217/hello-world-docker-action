@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: hello world action
+      id: hello
+      uses: ./
+      with:
+        who-to-great: "xing"
+    - name: get output
+      run: echo "the time was ${{steps.hello.outputs.time}}"
